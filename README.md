@@ -1,4 +1,4 @@
-# single-cell flu response and population variation
+# single-cell flu immune response and population variation
 code necessary to reproduce the main analyses published in:
 
 TITLE
