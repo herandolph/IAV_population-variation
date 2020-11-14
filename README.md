@@ -12,5 +12,7 @@ gcc or LLMV (tested with Apple LLVM version 8.0.0 (clang-800.0.42.1))
 2. place the folders `main_analyses` and `common_functions` in the same working directory
 3. check individual dependencies at the header of each script stored in `main_analyses`, and install the necessary CRAN and Bioconductor packages
 4. change the working directory in the script to your desired working directory
-```current = [desired working directory]```
+```
+current = [desired working directory]
+```
 5. run the scripts stored in `main_analyses` in R -- if `main_analyses` and `inputs` are located in the same directory, results will populate in a folder named `outputs`
