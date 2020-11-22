@@ -1,9 +1,9 @@
-# population variation in the immune response to influenza
+# population variation in the immune response to flu
 code necessary to reproduce the main analyses published in:
 
-TITLE
+Genetic ancestry impacts the immune response to influenza infection
 
-HE Randolph, xx, and LB Barreiro
+HE Randolph, Z Mu, JK Fiege, BK Thielen, JC Grenier, MS Cobb, J Hussin, YI Li, RA Langlois, and LB Barreiro
 
 # general dependencies
 R (tested in version 3.6.3)
