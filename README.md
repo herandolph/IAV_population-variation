@@ -1,4 +1,4 @@
-# population variation in the immune response to flu
+# population variation in the immune response to influenza
 code necessary to reproduce the main analyses published in:
 
 Genetic ancestry impacts the immune response to influenza infection
