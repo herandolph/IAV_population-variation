@@ -3,7 +3,7 @@ code necessary to reproduce the main analyses published in:
 
 Genetic ancestry impacts the immune response to influenza A infection
 
-HE Randolph, Z Mu, JK Fiege, BK Thielen, JC Grenier, MS Cobb, J Hussin, YI Li, RA Langlois, and LB Barreiro
+HE Randolph, Z Mu, JK Fiege, BK Thielen, JC Grenier, MS Cobb, JG Hussin, YI Li, RA Langlois, and LB Barreiro
 
 # general dependencies
 R (tested in version 3.6.3)
