@@ -4,6 +4,7 @@ library(ggplot2)
 library(plyr)
 library(reshape2)
 library(tidyr)
+library(limma)
 
 current = getwd()
 setwd(current)
@@ -85,31 +86,25 @@ calculatePredicted <- function(infection, celltype){
 	predicted_expression_matrix$beta <- NULL
 	colnames(predicted_expression_matrix) <- paste0(colnames(predicted_expression_matrix),"_",infection)
 
-	## write these as the predicted expression matrices
-	write.table(predicted_expression_matrix, paste0(results_dir,celltype,"_",infection,"_predicted_expression.txt"), quote = FALSE)
+	## get correct meta data
+	meta_data_i <- meta_data[rownames(meta_data) %in% colnames(predicted_expression_matrix),]
+	reorder_names <- rownames(meta_data_i)
+	residuals <- predicted_expression_matrix[reorder_names]
 
-	## take the rowMean of these values across individuals for each gene 
-	get_popAvg <- function(df, name){
-		popAvg <- as.data.frame(rowMeans(df, na.rm = TRUE))
-		colnames(popAvg)[1] <- name
-		popAvg$snps <- rownames(popAvg)
-		popAvg <- popAvg[, c(2,1)]
-	}
+	length(which(colnames(residuals)!=rownames(meta_data_i)))
 
-	AFR_popAvg <- get_popAvg(AFR_popValues, "AFR_popAvg")
-	EUR_popAvg <- get_popAvg(EUR_popValues, "EUR_popAvg")
+	## run model
+	design = model.matrix(~ YRI_Scale, data = meta_data_i)
+	## remove columns that are all 0s
+	design <- design[, colSums(design != 0) > 0]
 
-	## join
-	popAvg <- join(AFR_popAvg, EUR_popAvg, by = "snps")
+	vfit <- lmFit(residuals, design)
+	vfit <- eBayes(vfit)
 
-	## calculate difference (binary call)
-	popAvg$difference <- popAvg$AFR_popAvg - popAvg$EUR_popAvg
-
-	## add back in gene names
-	popAvg <- join(popAvg, eQTL, by = "snps")
+	betas = as.data.frame(vfit$coefficients[, which(colnames(vfit$coefficients) %in% c("YRI_Scale"))]); colnames(betas)[1] <- "betas"
 
 	## write outs
-	write.table(popAvg, paste0(results_dir,celltype,"_",infection,".txt"), quote = FALSE, row.names = FALSE)
+	write.table(betas, paste0(results_dir,celltype,"_",infection,".txt"), quote = FALSE, row.names = TRUE)
 }
 
 calculatePredicted("NI", "B")
