@@ -1,7 +1,7 @@
 # Population variation in the immune response to influenza
 code necessary to reproduce the main analyses published in:
 
-Genetic ancestry impacts the immune response to influenza A infection
+Single-cell RNA-sequencing reveals pervasive but highly cell type-specific genetic ancestry effects on the response to viral infection
 
 HE Randolph, Z Mu, JK Fiege, BK Thielen, JC Grenier, MS Cobb, JG Hussin, YI Li, RA Langlois, and LB Barreiro
 
