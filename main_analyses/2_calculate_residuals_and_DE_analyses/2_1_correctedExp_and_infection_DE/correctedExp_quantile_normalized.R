@@ -104,31 +104,29 @@ for (i in 1:length(celltypes)){
 	corrected_expression_NI <- corrected_expression[,colnames(corrected_expression) %in% list_NI]
 	corrected_expression_flu <- corrected_expression[,colnames(corrected_expression) %in% list_flu]
 
-	## QUANTILE NORMALIZE WITHIN CONDITION
-	quantile_expression_NI <- matrix(, nrow = nrow(corrected_expression_NI), ncol = ncol(corrected_expression_NI))
-	quantile_expression_flu <- matrix(, nrow = nrow(corrected_expression_flu), ncol = ncol(corrected_expression_flu))
+	quantile_norm <- function(df){
 
-	for (j in 1:nrow(corrected_expression_NI)){
-		exp <- corrected_expression_NI[j,]
-		exp_QN <- qqnorm(exp, plot = FALSE)
-		exp_QN <- exp_QN$x
-		quantile_expression_NI[j,] <- exp_QN
+		## QUANTILE NORMALIZE WITHIN CONDITION
+		quantile_expression <- matrix(, nrow = nrow(df), ncol = ncol(df))
+
+		for (j in 1:nrow(quantile_expression)){
+			exp <- df[j,]
+			exp_QN <- qqnorm(exp, plot = FALSE)
+			exp_QN <- exp_QN$x
+			quantile_expression[j,] <- exp_QN
+		}
+
+		rownames(quantile_expression) <- rownames(df)
+		colnames(quantile_expression) <- colnames(df)
+		return(quantile_expression)
 	}
 
-	for (j in 1:nrow(corrected_expression_flu)){
-		exp <- corrected_expression_flu[j,]
-		exp_QN <- qqnorm(exp, plot = FALSE)
-		exp_QN <- exp_QN$x
-		quantile_expression_flu[j,] <- exp_QN
-	}
-
-	rownames(quantile_expression_NI) <- rownames(corrected_expression_NI)
-	colnames(quantile_expression_NI) <- colnames(corrected_expression_NI)
-	rownames(quantile_expression_flu) <- rownames(corrected_expression_flu)
-	colnames(quantile_expression_flu) <- colnames(corrected_expression_flu)
+	quantile_expression_NI <- quantile_norm(corrected_expression_NI)
+	quantile_expression_flu <- quantile_norm(corrected_expression_flu)
+	
 	length(which(rownames(quantile_expression_NI)!=rownames(quantile_expression_flu)))
-
 	quantile_expression <- cbind(quantile_expression_NI, quantile_expression_flu)
+	
 	## write capture-corrected expression and weights to model popDE and popDR later
 	write.table(quantile_expression, paste0(residuals_dir,cell_type_i,"_corrected_expression.txt"), quote = FALSE, sep = ",")
 
