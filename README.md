@@ -3,7 +3,7 @@ code necessary to reproduce the main analyses published in:
 
 Single-cell RNA-sequencing reveals pervasive but highly cell type-specific genetic ancestry effects on the response to viral infection
 
-HE Randolph, Z Mu, JK Fiege, BK Thielen, JC Grenier, MS Cobb, JG Hussin, YI Li, RA Langlois, and LB Barreiro
+HE Randolph, JK Fiege, BK Thielen, MS Cobb, J Barroso-Batista, RA Langlois, and LB Barreiro
 
 # General dependencies
 R (tested in version 3.6.3)
