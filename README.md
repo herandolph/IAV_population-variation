@@ -1,9 +1,9 @@
 # Population variation in the immune response to influenza
 code necessary to reproduce the main analyses published in:
 
-Single-cell RNA-sequencing reveals pervasive but highly cell type-specific genetic ancestry effects on the response to viral infection
+Genetic ancestry effects on the response to viral infection are pervasive but cell type-specific
 
-HE Randolph, JK Fiege, BK Thielen, MS Cobb, J Barroso-Batista, RA Langlois, and LB Barreiro
+HE Randolph, JK Fiege, BK Thielen, C Mickelson, MS Cobb, J Barroso-Batista, RA Langlois, and LB Barreiro
 
 # General dependencies
 R (tested in version 3.6.3)
