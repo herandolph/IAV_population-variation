@@ -67,13 +67,13 @@ for (i in 1:length(celltypes)){
 	length(which(colnames(residuals)!=colnames(weights)))
 
 	## model popDR effects using an interaction model 
-	design = model.matrix(~ counts + indiv_ID + infection_status*YRI_Scale, data = meta_data_i)
+	design = model.matrix(~ counts + indiv_ID + infection_status*YRI_Scale + infection_status*age_Scale, data = meta_data_i)
 
 	## remove columns that are all 0s
 	design <- design[, colSums(design != 0) > 0]
 
 	## remove the global admixture effect
-	design <- subset(design, select = -c(YRI_Scale))
+	design <- subset(design, select = -c(YRI_Scale, age_Scale))
 
 	vfit <-lmFit(residuals, weights = weights, design)
 	vfit <- eBayes(vfit)
