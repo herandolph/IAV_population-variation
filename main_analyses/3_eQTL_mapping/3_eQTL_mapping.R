@@ -31,7 +31,7 @@ if(length(args)==0)
   }
 print(args)
 
-## number of iteractions for permutations that will be used for FDR correction 
+## number of iterations for permutations that will be used for FDR correction 
 iterations = 10
 
 ## load required libraries
