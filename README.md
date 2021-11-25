@@ -1,7 +1,7 @@
 # Population variation in the immune response to influenza
 code necessary to reproduce the main analyses published in:
 
-Genetic ancestry effects on the response to viral infection are pervasive but cell type specific
+Genetic ancestry effects on the response to viral infection are pervasive but cell type specific (Science, 2021)
 
 HE Randolph, JK Fiege, BK Thielen, CK Mickelson, M Shiratori, J Barroso-Batista, RA Langlois, and LB Barreiro
 
